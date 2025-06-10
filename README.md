@@ -21,7 +21,9 @@ options:
 ```
 
 ### Examples
-`sync2s3.py --location .\sync2s3\`
+You will have to override `--endpoint`.
+
+`sync2s3.py --location ./sync2s3/`
 
 ### Room for improvement
 - [ ] upload folder
