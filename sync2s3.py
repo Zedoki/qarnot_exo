@@ -28,7 +28,6 @@ def main():
     parser.add_argument("-f", "--force",
                         action="store_true",
                         help="Do not interactive, no confirmation")
-    parser.add_argument("-u", "--url", default=default_s3_endpoint)
     parser.add_argument("--accessKey",default=default_ACCESS_KEY)
     parser.add_argument("--secretKey",default=default_SECRET_KEY)
 

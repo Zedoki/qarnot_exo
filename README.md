@@ -16,7 +16,6 @@ options:
   -b, --bucket BUCKET
   -e, --endpoint ENDPOINT
   -f, --force           Do not interactive, no confirmation
-  -u, --url URL
   --accessKey ACCESSKEY
   --secretKey SECRETKEY
 ```
