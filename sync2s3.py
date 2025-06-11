@@ -116,8 +116,7 @@ def main():
                 print(file)
                 local_path = os.path.join(root, file)
                 relative_path = os.path.relpath(local_path, args.location)
-                #s3.Bucket(args.bucket).upload_file(relative_path, relative_path, ExtraArgs={"ContentType:": mimetypes.guess_type(relative_path)[0]})
-                s3.Bucket(args.bucket).upload_file(relative_path, relative_path)
+                s3.Bucket(args.bucket).upload_file(relative_path, relative_path, ExtraArgs={"ContentType": mimetypes.guess_type(relative_path)[0]})
 
     """
     for entry in files_list:
