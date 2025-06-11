@@ -29,7 +29,7 @@ You will have to override `--endpoint`.
 - [X] upload folder
 - [x] reflect correct content-type in bucket (partial)
 - [ ] make use of try catch
-- [ ] pytlint + ruff 
+- [x] ruff
 - [ ] create funtion for better visibility
 - [x] remove limitation for flate files only
 - [ ] make interactive version
