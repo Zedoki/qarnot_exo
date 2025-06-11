@@ -4,6 +4,7 @@ import os
 import argparse
 import boto3
 import botocore
+import mimetypes
 
 
 def main():
@@ -35,7 +36,7 @@ def main():
     print(args)
 
     s3 = boto3.resource("s3",
-                        endpoint_url=args.url,
+                        endpoint_url=args.endpoint,
                         aws_access_key_id=args.accessKey,
                         aws_secret_access_key=args.secretKey)
 
@@ -82,6 +83,7 @@ def main():
 
     for entry in files_list:
         if entry.name in list_for_upload:
+            print(mimetypes.guess_type(entry.path)[0])
             s3.Bucket(args.bucket).upload_file(entry.path, entry.name)
     
     for entry in list_for_deletion:
