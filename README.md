@@ -5,16 +5,16 @@ This script sync from a local place to a remote S3 server bucket.
 
 ## How to use
 ```
-usage: sync2s3.py [-h] [-l LOCATION] [-b BUCKET] [-e ENDPOINT] [-f] [-u URL] [--accessKey ACCESSKEY] [--secretKey SECRETKEY]
+usage: sync2s3.py [-h] [-l LOCATION] [-b BUCKET] [-e ENDPOINT] [-f] [--accessKey ACCESSKEY] [--secretKey SECRETKEY]
 
 This script mirror new items from local only to remote S3 endpoint
 
 options:
   -h, --help            show this help message and exit
-  -l, --location LOCATION
+  -l LOCATION, --location LOCATION
                         local location
-  -b, --bucket BUCKET
-  -e, --endpoint ENDPOINT
+  -b BUCKET, --bucket BUCKET
+  -e ENDPOINT, --endpoint ENDPOINT
   -f, --force           Do not interactive, no confirmation
   --accessKey ACCESSKEY
   --secretKey SECRETKEY
@@ -34,11 +34,11 @@ You will have to override `--endpoint`.
 - [x] remove limitation for flate files only
 - [ ] make interactive version
 - [ ] add debug / verbose options
-- [ ] packaging: bring dependancies along the package or install it in venv
+- [ ] packaging: bring dependencies along the package or install it in venv
 
 
 ## How to package and deploy
-__Warning: this method install system wide dependancies, you may not want that__
+__Warning: this method install system wide dependencies, you may not want that__
 
 1. Create file structure like in sync2s3-package
 2. Copy and chmod +x postinstall and the script
