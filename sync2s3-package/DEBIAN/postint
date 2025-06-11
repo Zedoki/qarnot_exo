@@ -1,0 +1,3 @@
+#!/bin/bash
+pip3 install -r usr/local/bin/sync2s3-requirements.txt
+exit 0

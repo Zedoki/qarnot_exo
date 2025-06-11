@@ -34,7 +34,13 @@ You will have to override `--endpoint`.
 - [x] remove limitation for flate files only
 - [ ] make interactive version
 - [ ] add debug / verbose options
+- [ ] packaging: bring dependancies along the package or install it in venv
 
 
 ## How to package and deploy
-TODO
+__Warning: this method install system wide dependancies, you may not want that__
+
+1. Create file structure like in sync2s3-package
+2. Copy and chmod +x postinstall and the script
+3. `dpkg-deb --build sync2s3-package`
+4. `dpkg -i sync2s3-package.deb`

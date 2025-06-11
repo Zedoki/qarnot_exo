@@ -1,0 +1,7 @@
+Package: sync2s3
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Thierry Tran <contact@thierrytran.eu>
+Description: Script to mirror local dir to S3
