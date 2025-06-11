@@ -26,12 +26,12 @@ You will have to override `--endpoint`.
 `sync2s3.py --location ./sync2s3/`
 
 ### Room for improvement
-- [ ] upload folder
-- [ ] reflect correct content-type in bucket
+- [X] upload folder
+- [x] reflect correct content-type in bucket (partial)
 - [ ] make use of try catch
 - [ ] pytlint + ruff 
 - [ ] create funtion for better visibility
-- [ ] remove limitation for flate files only
+- [x] remove limitation for flate files only
 - [ ] make interactive version
 - [ ] add debug / verbose options
 

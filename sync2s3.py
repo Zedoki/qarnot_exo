@@ -86,7 +86,7 @@ def main():
     for root, dirs, files in os.walk(args.location):
         for file in files:
             local_path = os.path.join(root, file)
-            print(local_path)
+            #print(local_path)
             relative_path = os.path.relpath(local_path, args.location)
             dict_file_lastMod[relative_path] = os.path.getmtime(relative_path)
 
@@ -94,7 +94,7 @@ def main():
 
     
     for file in dict_file_lastMod:
-        print(file)
+        #print(file)
         if file in dict_object_lastMod:
             if dict_file_lastMod[file] > dict_object_lastMod[file]:
                 list_for_upload.append(file)
@@ -112,11 +112,19 @@ def main():
     
     for root, dirs, files in os.walk(args.location):
         for file in files:
-            if file in list_for_upload:
-                print(file)
+            local_path = os.path.join(root, file)
+            relative_path = os.path.relpath(local_path, args.location)
+            if relative_path in list_for_upload:
+                print(relative_path)
+                print(local_path)
                 local_path = os.path.join(root, file)
                 relative_path = os.path.relpath(local_path, args.location)
-                s3.Bucket(args.bucket).upload_file(relative_path, relative_path, ExtraArgs={"ContentType": mimetypes.guess_type(relative_path)[0]})
+                print(mimetypes.guess_type(local_path)[0])
+                print(mimetypes.guess_type(relative_path)[0])
+                if mimetypes.guess_type(relative_path)[0] == None:
+                    s3.Bucket(args.bucket).upload_file(relative_path, relative_path)
+                else:
+                    s3.Bucket(args.bucket).upload_file(relative_path, relative_path, ExtraArgs={"ContentType": mimetypes.guess_type(relative_path)[0]})
 
     """
     for entry in files_list:
