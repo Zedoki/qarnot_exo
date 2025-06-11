@@ -40,19 +40,6 @@ def main():
                         aws_access_key_id=args.accessKey,
                         aws_secret_access_key=args.secretKey)
 
-    files_list = os.scandir(args.location)
-    files_list_walk = os.walk(args.location)
-
-    """"""
-    for root, dirs, files in os.walk(args.location):
-        for file in files:
-            local_path = os.path.join(root, file)
-            #print(local_path)
-            relative_path = os.path.relpath(local_path, args.location)
-            #print(relative_path)
-
-        
-    
     list_for_upload = []
     list_for_deletion = []
     dict_object_lastMod = {}
@@ -72,29 +59,15 @@ def main():
 
     for obj in s3.Bucket(args.bucket).objects.all():
         dict_object_lastMod[obj.key] = obj.last_modified.timestamp()
-        #print(obj.key)
-        #print(dict_object_lastMod[obj.key])
-
-    #print(f"list object {dict_object_lastMod}")
-    """
-    for entry in os.scandir(args.location):
-        dict_file_lastMod[entry.name] = os.path.getmtime(entry.path)
-        print(entry.name)
-        print(dict_file_lastMod[entry.name])
-    """
 
     for root, dirs, files in os.walk(args.location):
         for file in files:
             local_path = os.path.join(root, file)
-            #print(local_path)
             relative_path = os.path.relpath(local_path, args.location)
             dict_file_lastMod[relative_path] = os.path.getmtime(relative_path)
 
-    #print(f"list local file {dict_file_lastMod}")
-
     
     for file in dict_file_lastMod:
-        #print(file)
         if file in dict_object_lastMod:
             if dict_file_lastMod[file] > dict_object_lastMod[file]:
                 list_for_upload.append(file)
@@ -115,23 +88,12 @@ def main():
             local_path = os.path.join(root, file)
             relative_path = os.path.relpath(local_path, args.location)
             if relative_path in list_for_upload:
-                print(relative_path)
-                print(local_path)
                 local_path = os.path.join(root, file)
                 relative_path = os.path.relpath(local_path, args.location)
-                print(mimetypes.guess_type(local_path)[0])
-                print(mimetypes.guess_type(relative_path)[0])
                 if mimetypes.guess_type(relative_path)[0] == None:
                     s3.Bucket(args.bucket).upload_file(relative_path, relative_path)
                 else:
                     s3.Bucket(args.bucket).upload_file(relative_path, relative_path, ExtraArgs={"ContentType": mimetypes.guess_type(relative_path)[0]})
-
-    """
-    for entry in files_list:
-        if entry.name in list_for_upload:
-            print(mimetypes.guess_type(entry.path)[0])
-            s3.Bucket(args.bucket).upload_file(entry.path, entry.name)
-    """
 
     for entry in list_for_deletion:
         s3.Bucket(args.bucket).delete_objects(Delete={
@@ -139,7 +101,6 @@ def main():
             "Quiet": True
         })
         
-    
 
 main()
 
